@@ -1,0 +1,11 @@
+{
+		  "title": "CH340G - OSX EL CAPITAN",
+		  "date": {
+		    "d": 15 ,
+		    "m": 7,
+		    "y": 2015
+		  },
+		  "tags": ["Arduino","WTFDUINO", "CH340G"],
+		  "description": "How to get CH340G chips working on OSX EL CAPITAN",
+		  "author": "Calum Knott"
+		}

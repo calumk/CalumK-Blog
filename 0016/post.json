@@ -1,0 +1,11 @@
+{
+  "title": "Inline Python",
+  "date": {
+    "d": 10,
+    "m": 7,
+    "y": 2014
+  },
+  "tags": ["python",":javascript","web","programming"],
+  "description": "Running python code in the browser!",
+  "author": "Calum Knott"
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<!-- saved from url=(0070)https://opencv-code.com/tutorials/detecting-simple-shapes-in-an-image/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Detecting simple shapes in an image |  OpenCV Code</title>
+		<meta name="viewport" content="width=device-width; initial-scale=1.0">
+		 
+		 <meta name="description" content="When I came to the tutorial on how to detect simple shapes with AForge.NET I wonder how we can do it in OpenCV. Luckily in the OpenCV ...">
+		 
+		<meta name="google-site-verification" content="BjuZT2Maz6Px63ri_zMLnjjq9skWUFyEuq3dG9iRHjg">
+		<link rel="shortcut icon" href="https://opencv-code.com/wp-content/themes/opencvcode/img/favicon.ico">
+		<link rel="stylesheet" href="https://opencv-code.com/wp-content/themes/opencvcode/css/bootstrap.css">
+		<link rel="stylesheet" href="https://opencv-code.com/wp-content/themes/opencvcode/style.css">
+		<!--[if lt IE 9]>
+			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+		<![endif]-->
+					<script src="./Detecting simple shapes in an image   OpenCV Code_files/cb=gapi.loaded_1" async=""></script><script src="./Detecting simple shapes in an image   OpenCV Code_files/cb=gapi.loaded_0" async=""></script><script type="text/javascript" async="" src="./Detecting simple shapes in an image   OpenCV Code_files/plusone.js" gapi_processed="true"></script><script id="twitter-wjs" src="./Detecting simple shapes in an image   OpenCV Code_files/widgets.js"></script><script type="text/javascript" async="" src="./Detecting simple shapes in an image   OpenCV Code_files/ga.js"></script><script type="text/javascript">
+				var _gaq = _gaq || [];
+				_gaq.push(['_setAccount', 'UA-1574178-9']);
+				_gaq.push(['_trackPageview']);
+				(function() {
+					var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+				})();
+			</script>
+				<link rel="alternate" type="application/rss+xml" title="OpenCV Code » Feed" href="https://opencv-code.com/feed/">
+<link rel="alternate" type="application/rss+xml" title="OpenCV Code » Comments Feed" href="https://opencv-code.com/comments/feed/">
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://opencv-code.com/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://opencv-code.com/wp-includes/wlwmanifest.xml"> 
+<link rel="prev" title="Sharpen image with unsharp mask" href="https://opencv-code.com/quick-tips/sharpen-image-with-unsharp-mask/">
+<link rel="next" title="Repair damaged image with Inpainting" href="https://opencv-code.com/tutorials/repair-damaged-image-with-inpainting/">
+<meta name="generator" content="WordPress 3.4.2">
+<link rel="canonical" href="./Detecting simple shapes in an image   OpenCV Code_files/Detecting simple shapes in an image   OpenCV Code.html">
+<link rel="shortlink" href="https://opencv-code.com/?p=241">
+	<style type="text/css"></style></head>
+	<body data-twttr-rendered="true">
+
+		<div class="navbar navbar-fixed-top">
+			<div class="navbar-inner">
+				<div class="container">
+					<button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="brand" href="https://opencv-code.com/">OpenCV Code</a>
+					<div class="nav-collapse collapse">
+						<ul id="menu-categories" class="nav"><li id="menu-item-696" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-696"><a href="https://opencv-code.com/projects/">Projects</a></li>
+<li id="menu-item-54" class="menu-item menu-item-type-taxonomy menu-item-object-category current-post-ancestor current-menu-parent current-post-parent menu-item-54"><a href="https://opencv-code.com/tutorials/">Tutorials</a></li>
+<li id="menu-item-53" class="menu-item menu-item-type-taxonomy menu-item-object-category menu-item-53"><a href="https://opencv-code.com/quick-tips/">Quick tips</a></li>
+</ul>						<ul id="menu-pages" class="nav pull-right"><li id="menu-item-55" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-55"><a href="https://opencv-code.com/about/">About</a></li>
+<li id="menu-item-61" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-61"><a href="https://opencv-code.com/contact/">Contact</a></li>
+</ul>					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
+			<div class="row">
+				<div class="span9">
+
+
+<ul class="breadcrumb">
+	<li><a href="https://opencv-code.com/">Home</a> <span class="divider">/</span></li>
+	<li><a href="https://opencv-code.com/tutorials/" title="View all posts in Tutorials" rel="category tag">Tutorials</a> <span class="divider">/</span></li>
+	<li class="active">Detecting simple shapes in an image</li>
+</ul>
+
+
+	
+	<div class="page-header">
+		<h1 class="post-title">
+			Detecting simple shapes in an image			<small class="post-meta">
+				Posted on <a href="./Detecting simple shapes in an image   OpenCV Code_files/Detecting simple shapes in an image   OpenCV Code.html">Dec 17, 2012</a> 
+											</small>
+		</h1>
+		<div class="like-buttons">
+			<iframe src="./Detecting simple shapes in an image   OpenCV Code_files/like.html" style="border:none; overflow:hidden; height:21px; width:100px;"></iframe>
+			<iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./Detecting simple shapes in an image   OpenCV Code_files/tweet_button.1392079123.html" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 107px; height: 20px;"></iframe>
+			<div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1392478663872" name="I0_1392478663872" src="./Detecting simple shapes in an image   OpenCV Code_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div>
+		</div>
+	</div>
+
+	<div class="post-content">
+		<img width="180" height="120" src="./Detecting simple shapes in an image   OpenCV Code_files/detect-simple-shapes-feat-img1.png" class="post-featured-img wp-post-image" alt="detect-simple-shapes-feat-img" title=""><p>When I came to the tutorial on <a href="http://www.aforgenet.com/articles/shape_checker/">how to detect simple shapes</a> with AForge.NET I wonder how we can do it in OpenCV. Luckily in the OpenCV samples directory there is a program named <code>squares.cpp</code> which is a rectangle detector program. Let’s see how we can extend it to detect other shapes as well.<span id="more-241"></span></p>
+<p>The program <code>squares.cpp</code> actually detect rectangles rather than squares. But its result is very good. First we’ll take a look at how the program works and then adapt the techniques to detect other simple shapes: triangle, square, pentagon, hexagon, and circle.</p>
+<h2>How squares.cpp detect rectangles</h2>
+<p>After some pre-processing steps and retrieving all contours, it loop all of the contours and check if the contour shape is rectangle. Take a look at the code snippet below.</p>
+<pre class="prettyprint"><code>vector&lt;Point&gt; approx;
+
+for (size_t i = 0; i &lt; contours.size(); i++)
+{
+    approxPolyDP(Mat(contours[i]), approx, 
+                 arcLength(Mat(contours[i]), true)*0.02, true);
+
+    if (approx.size() == 4 &amp;&amp;
+        fabs(contourArea(Mat(approx))) &gt; 1000 &amp;&amp;
+        isContourConvex(Mat(approx)))
+    {
+        double maxCosine = 0;
+
+        for( int j = 2; j &lt; 5; j++ )
+        {
+            double cosine = fabs(angle(approx[j%4], approx[j-2], approx[j-1]));
+            maxCosine = MAX(maxCosine, cosine);
+        }
+
+        if( maxCosine &lt; 0.3 )
+            squares.push_back(approx);
+    }
+}
+</code></pre>
+<p>Given a contours, the program approximate a polygonal curve for that contours. This polygonal curve is the key for detecting the contour’s shape. In the snippet above, the shape is determined to be a rectangle if the polygonal curve meets the following conditions:</p>
+<ol>
+<li>It is <a href="http://en.wikipedia.org/wiki/Convex_set">convex</a>.</li>
+<li>It has 4 vertices.</li>
+<li>All angles are ~90 degree.</li>
+</ol>
+<h2>Algorithm to detect other simple shapes</h2>
+<p>Given the approximation curve, we can quickly determine a contour is a triangle if the curve has 3 vertices. Currently I skip the detection of the angles (right triangle, equilateral triangle, etc.) and simply label them as “triangle”.</p>
+<p>To detect pentagon, hexagon, and circle, we will use their properties as shown below.</p>
+<p><strong>Pentagon</strong>:</p>
+<ol>
+<li>Has 5 vertices.</li>
+<li>All angles are ~108 degree.</li>
+</ol>
+<p><strong>Hexagon</strong>:</p>
+<ol>
+<li>Has 6 vertices.</li>
+<li>All angles are ~120 degree.</li>
+</ol>
+<p><strong>Circle</strong>:</p>
+<ol>
+<li>Has more than 6 vertices.</li>
+<li>Has diameter of the same size in each direction.</li>
+<li>The area of the contour is ~<span style="padding: 2px 4px; font-family: consolas; font-size: 14px; background: #eee;">πr<sup>2</sup></span></li>
+</ol>
+<p>In addition, I also want to detect square objects. A square is defined by a rectangle with four equal sides.</p>
+<h2>Write the code</h2>
+<p>Let’s get started to write the code. I will use this image as the source image.</p>
+<div class="post-img post-img-left"><img src="./Detecting simple shapes in an image   OpenCV Code_files/detect-simple-shapes-src-img.png" alt="detect-simple-shapes-src-img.png"></div>
+<p>First load the source image,</p>
+<pre class="prettyprint"><code>cv::Mat src = cv::imread("basic-shapes.png");
+if (src.empty())
+    return -1;
+</code></pre>
+<p>We need to convert the source image to binary image. We do this by converting the image to grayscale first and threshold the grayscaled image. But as suggested in <code>squares.cpp</code>, we’ll use Canny operator rather than thresholding since Canny is able to catch squares with gradient shading.</p>
+<pre class="prettyprint"><code>// Convert to grayscale
+cv::Mat gray;
+cv::cvtColor(src, gray, CV_BGR2GRAY);
+
+// Convert to binary image using Canny
+cv::Mat bw;
+cv::Canny(gray, bw, 0, 50, 5);
+</code></pre>
+<p>Perhaps you need to play with the parameters a bit.</p>
+<p>The array <code>bw</code> is now a binary image with edges from the shapes. Obtain the contours,</p>
+<pre class="prettyprint"><code>// Find contours
+std::vector&lt;std::vector&lt;cv::Point&gt; &gt; contours;
+cv::findContours(bw.clone(), contours, CV_RETR_EXTERNAL, CV_CHAIN_APPROX_SIMPLE);
+</code></pre>
+<p>Loop through all the contours and get the approximate polygonal curves for each contour,</p>
+<pre class="prettyprint"><code>// The array for storing the approximation curve
+std::vector&lt;cv::Point&gt; approx;
+
+// We'll put the labels in this destination image
+cv::Mat dst = src.clone();
+
+for (int i = 0; i &lt; contours.size(); i++)
+{
+    // Approximate contour with accuracy proportional
+    // to the contour perimeter
+    cv::approxPolyDP(
+        cv::Mat(contours[i]), 
+        approx, 
+        cv::arcLength(cv::Mat(contours[i]), true) * 0.02, 
+        true
+    );
+
+    // Skip small or non-convex objects 
+    if (std::fabs(cv::contourArea(contours[i])) &lt; 100 || !cv::isContourConvex(approx))
+        continue;
+</code></pre>
+<p>The vector <code>approx</code> now contains the vertices of the polygonal approximation for the contour. We will use its size to determine whether the contour is a triangle, polygon, or hexagon.</p>
+<p>Getting the triangle is easy, just look where the number of vertices = 3.</p>
+<pre class="prettyprint"><code>    if (approx.size() == 3)
+        setLabel(dst, "TRI", contours[i]);    // Triangles
+</code></pre>
+<p>The function <code>setLabel()</code> above is a helper for displaying text in the center of a contour. See the full source code on <a href="https://github.com/bsdnoobz/opencv-code/blob/master/shape-detect.cpp">Github</a> to see its implementation.</p>
+<p>To detect square, rectangle, pentagon, and hexagon, we need to obtain the degree of the corners. We will use these values to determine the contour’s shape by using the shape properties above.</p>
+<pre class="prettyprint"><code>    else if (approx.size() &gt;= 4 &amp;&amp; approx.size() &lt;= 6)
+    {
+        // Number of vertices of polygonal curve
+        int vtc = approx.size();
+
+        // Get the degree (in cosines) of all corners
+        std::vector&lt;double&gt; cos;
+        for (int j = 2; j &lt; vtc+1; j++)
+            cos.push_back(angle(approx[j%vtc], approx[j-2], approx[j-1]));
+
+        // Sort ascending the corner degree values
+        std::sort(cos.begin(), cos.end());
+
+        // Get the lowest and the highest degree
+        double mincos = cos.front();
+        double maxcos = cos.back();
+
+        // Use the degrees obtained above and the number of vertices
+        // to determine the shape of the contour
+        if (vtc == 4 &amp;&amp; mincos &gt;= -0.1 &amp;&amp; maxcos &lt;= 0.3)
+        {
+            // Detect rectangle or square
+            cv::Rect r = cv::boundingRect(contours[i]);
+            double ratio = std::abs(1 - (double)r.width / r.height);
+
+            setLabel(dst, ratio &lt;= 0.02 ? "SQU" : "RECT", contours[i]);
+        }
+        else if (vtc == 5 &amp;&amp; mincos &gt;= -0.34 &amp;&amp; maxcos &lt;= -0.27)
+            setLabel(dst, "PENTA", contours[i]);
+        else if (vtc == 6 &amp;&amp; mincos &gt;= -0.55 &amp;&amp; maxcos &lt;= -0.45)
+            setLabel(dst, "HEXA", contours[i]);
+    }
+</code></pre>
+<p>If number of the vertices more than 6 then it should fall to the circle detection.</p>
+<pre class="prettyprint"><code>    else
+    {
+        // Detect and label circles
+        double area = cv::contourArea(contours[i]);
+        cv::Rect r = cv::boundingRect(contours[i]);
+        int radius = r.width / 2;
+
+        if (std::abs(1 - ((double)r.width / r.height)) &lt;= 0.2 &amp;&amp;
+            std::abs(1 - (area / (CV_PI * std::pow(radius, 2)))) &lt;= 0.2)
+        {
+            setLabel(dst, "CIR", contours[i]);
+        }
+    }
+} // end of for() loop
+</code></pre>
+<p>Display both <code>src</code> and <code>dst</code> images,</p>
+<pre class="prettyprint"><code>cv::imshow("src", src);
+cv::imshow("dst", dst);
+cv::waitKey(0);
+return 0;
+</code></pre>
+<p>And here is the final result.</p>
+<div class="post-img post-img-left"><img src="./Detecting simple shapes in an image   OpenCV Code_files/detect-simple-shapes-dst-img.png" alt="detect-simple-shapes-dst-img.png"></div>
+<p>The full source code is available on <a href="https://github.com/bsdnoobz/opencv-code/blob/master/shape-detect.cpp">Github</a>.</p>
+	</div>
+
+	<div class="post-footer">
+		<p class="post-tags">Tagged with: <a href="https://opencv-code.com/tag/cpp/" class="label " title="27 topics">C++</a> <a href="https://opencv-code.com/tag/detection/" class="label " title="5 topics">detection</a> </p>		<div class="like-buttons">
+			<iframe src="./Detecting simple shapes in an image   OpenCV Code_files/like.html" style="border:none; overflow:hidden; height:21px; width:100px;"></iframe>
+			<iframe id="twitter-widget-1" scrolling="no" frameborder="0" allowtransparency="true" src="./Detecting simple shapes in an image   OpenCV Code_files/tweet_button.1392079123(1).html" class="twitter-share-button twitter-tweet-button twitter-count-horizontal" title="Twitter Tweet Button" data-twttr-rendered="true" style="width: 107px; height: 20px;"></iframe>
+			<div id="___plusone_1" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I1_1392478663880" name="I1_1392478663880" src="./Detecting simple shapes in an image   OpenCV Code_files/fastbutton(1).html" data-gapiattached="true" title="+1"></iframe></div>
+		</div>
+	</div>
+
+	<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="https://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	<script>(function() { var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true; po.src = 'https://apis.google.com/js/plusone.js'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s); })();</script>
+
+	<ul class="pager">
+		<li class="previous"><a href="https://opencv-code.com/tutorials/pupil-detection-from-an-eye-image/" rel="prev">← Pupil detection from an eye image</a></li>
+		<li class="next"><a href="https://opencv-code.com/tutorials/repair-damaged-image-with-inpainting/" rel="next">Repair damaged image with Inpainting →</a></li>
+	</ul>
+
+	<hr>
+
+	
+
+	<div class="alert alert-warning">
+		<h4>Comments are closed.</h4>
+		<p>Comments are automatically turned off one month after the original post. 
+			 If you have a question concerning the content of this post, please
+			 feel free to <a href="https://opencv-code.com/contact/">contact me</a>.</p>
+	</div>
+
+
+
+
+		</div> <!-- span9 -->
+
+		<div class="span3">
+			<div id="sidebar">
+
+				<form action="https://opencv-code.com/" method="get" id="form-search">
+					<div class="input-append">
+						<input type="text" name="s" value="" placeholder="Search...">
+						<button type="submit" class="btn btn-primary"><i class="icon-search icon-white"></i></button>
+					</div>
+				</form>
+
+				<h4>About this blog</h4>
+				<p>
+										<img alt="" src="./Detecting simple shapes in an image   OpenCV Code_files/8448244989f87616a898d0d56d417dda" class="avatar avatar-75 photo" height="75" width="75">					Hi, I'm Nash. I build computer vision apps with C++ and Python. In this blog you will find my notes, tutorials, and fun projects. Enjoy!				</p>
+				<iframe id="twitter-widget-2" scrolling="no" frameborder="0" allowtransparency="true" src="./Detecting simple shapes in an image   OpenCV Code_files/follow_button.1392079123.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 132px; height: 20px;"></iframe>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+
+				<h4>Newsletter</h4> 
+				<p>Sign up to receive updates from<br>OpenCV Code.</p>
+				<form action="http://opencv-code.us6.list-manage1.com/subscribe/post?u=c6f24496eeb8f6a9774a6f1fe&id=4984764278" method="post">
+					<div class="input-append">
+						<input type="email" name="EMAIL" value="" class="input-medium" placeholder="Email address"><button type="submit" class="btn btn-warning"><i class="icon-chevron-right icon-white"></i></button>
+					</div>
+				</form>
+
+				<h4>Recent posts</h4>
+				<ul>
+					<li><a href="https://opencv-code.com/tutorials/how-to-read-the-digits-from-a-scratchcard/">How to read the digits from a scratchcard</a></li><li><a href="https://opencv-code.com/tutorials/ocr-ing-nikes-new-rsvp-program/">OCR-ing Nike's new RSVP program</a></li><li><a href="https://opencv-code.com/quick-tips/getting-the-skeleton-of-a-binary-image-in-python/">Getting the skeleton of a binary image in Python</a></li><li><a href="https://opencv-code.com/tutorials/how-to-detect-small-holes-in-the-wall/">How to detect small holes in the wall</a></li><li><a href="https://opencv-code.com/tutorials/tv-commercials-recognition/">TV Commercials Recognition</a></li><li><a href="https://opencv-code.com/tutorials/photo-to-colored-dot-patterns-with-opencv/">Photo to colored dot patterns with OpenCV</a></li><li><a href="https://opencv-code.com/quick-tips/auto-cropping-image-with-arbitrary-background-color/">Auto-cropping image with arbitrary background color</a></li>				</ul>
+
+				<h4>Tags</h4>
+				<ul class="tags">
+					<li><a href="https://opencv-code.com/tag/cpp/" class="label " title="27 topics">C++</a></li><li><a href="https://opencv-code.com/tag/detection/" class="label " title="5 topics">detection</a></li><li><a href="https://opencv-code.com/tag/distance-transform/" class="label " title="1 topic">distance transform</a></li><li><a href="https://opencv-code.com/tag/drawing/" class="label " title="1 topic">drawing</a></li><li><a href="https://opencv-code.com/tag/filter/" class="label " title="1 topic">filter</a></li><li><a href="https://opencv-code.com/tag/geometric-transform/" class="label " title="3 topics">geometric transform</a></li><li><a href="https://opencv-code.com/tag/histogram/" class="label " title="2 topics">histogram</a></li><li><a href="https://opencv-code.com/tag/hitmiss-transform/" class="label " title="1 topic">hitmiss transform</a></li><li><a href="https://opencv-code.com/tag/hough-transform/" class="label " title="1 topic">hough transform</a></li><li><a href="https://opencv-code.com/tag/image-pyramid/" class="label " title="1 topic">image pyramid</a></li><li><a href="https://opencv-code.com/tag/inpainting/" class="label " title="1 topic">inpainting</a></li><li><a href="https://opencv-code.com/tag/mathematica/" class="label " title="1 topic">Mathematica</a></li><li><a href="https://opencv-code.com/tag/matlab/" class="label " title="1 topic">matlab</a></li><li><a href="https://opencv-code.com/tag/morphology-transform/" class="label " title="4 topics">morphology transform</a></li><li><a href="https://opencv-code.com/tag/motion/" class="label " title="1 topic">motion</a></li><li><a href="https://opencv-code.com/tag/ocr/" class="label " title="3 topics">ocr</a></li><li><a href="https://opencv-code.com/tag/photo-effects/" class="label " title="1 topic">photo effects</a></li><li><a href="https://opencv-code.com/tag/python/" class="label " title="6 topics">python</a></li><li><a href="https://opencv-code.com/tag/skeleton/" class="label " title="1 topic">skeleton</a></li><li><a href="https://opencv-code.com/tag/template-matching/" class="label " title="3 topics">template matching</a></li><li><a href="https://opencv-code.com/tag/tesseract/" class="label " title="1 topic">tesseract</a></li><li><a href="https://opencv-code.com/tag/thinning/" class="label " title="2 topics">thinning</a></li><li><a href="https://opencv-code.com/tag/tracking/" class="label " title="1 topic">tracking</a></li><li><a href="https://opencv-code.com/tag/watershed/" class="label " title="1 topic">watershed</a></li><li><a href="https://opencv-code.com/tag/web/" class="label " title="1 topic">web</a></li><li><a href="https://opencv-code.com/tag/webcam/" class="label " title="1 topic">webcam</a></li>				</ul>
+
+			</div> <!-- sidebar -->
+		</div> <!-- span3 -->
+	</div> <!-- row -->
+</div> <!-- container -->
+
+		<div id="footer">
+			<div class="container">
+				<p class="pull-right"><a href="https://opencv-code.com/tutorials/detecting-simple-shapes-in-an-image/#">Back to top</a></p>
+				<p>© OpenCV-Code 2012</p>
+			</div>
+		</div>
+		<script src="./Detecting simple shapes in an image   OpenCV Code_files/bundle.js"></script>
+		<script>
+			(function($) {
+				$('pre').addClass('prettyprint');
+				$('.comment-reply-link').addClass('btn btn-mini').removeClass('comment-reply-link');
+				//prettyPrint();
+			})(jQuery);
+		</script>
+	
+
+
+
+<iframe name="oauth2relay1972267767" id="oauth2relay1972267767" src="./Detecting simple shapes in an image   OpenCV Code_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

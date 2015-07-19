@@ -1,0 +1,11 @@
+{
+		  "title": "CRS Robotic Arm",
+		  "date": {
+		    "d": 3 ,
+		    "m": 2,
+		    "y": 2014
+		  },
+		  "tags": ["programming","robotics","middlesex","university","tutorial"],
+		  "description": "One of my university modules at the moment involves using a CRS Industrial robotic arm.",
+		  "author": "Calum Knott"
+		}

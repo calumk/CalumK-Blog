@@ -1,0 +1,11 @@
+{
+		  "title": "Dissertation - OpenCV - Recognizing specific shapes",
+		  "date": {
+		    "d": 14 ,
+		    "m": 2,
+		    "y": 2014
+		  },
+		  "tags": ["university","middlesex","programming","opencv","c++","dissertation"],
+		  "description": "This is an introduction into more complex shape detection with OpenCV",
+		  "author": "Calum Knott"
+		}

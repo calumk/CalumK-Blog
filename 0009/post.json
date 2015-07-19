@@ -1,0 +1,11 @@
+{
+		  "title": "Dissertation - Controlling Baxter with python - Part 1",
+		  "date": {
+		    "d": 11 ,
+		    "m": 3,
+		    "y": 2014
+		  },
+		  "tags": ["baxter","middlesex","programming","university","dissertation","python"],
+		  "description": "So following on in a series of blog posts relating to my major project at middlsex University, I have begun to use the Baxter robot.",
+		  "author": "Calum Knott"
+		}

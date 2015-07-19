@@ -1,0 +1,11 @@
+{
+		  "title": "Dissertation - Python and OpenCV - Creating a GUI",
+		  "date": {
+		    "d": 16 ,
+		    "m": 3,
+		    "y": 2014
+		  },
+		  "tags": ["dissertation","middlesex","university","OpenCV","Python"],
+		  "description": "A simple intro into GUI creation with Python and OpenCV",
+		  "author": "Calum Knott"
+		}

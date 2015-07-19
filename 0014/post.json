@@ -1,0 +1,11 @@
+{
+		  "title": "Building a 3D game in Godot",
+		  "date": {
+		    "d": 8 ,
+		    "m": 4,
+		    "y": 2014
+		  },
+		  "tags": ["godot","games","engine","programming","gdscript"],
+		  "description": "A video-tutorial for 3D games in godot ",
+		  "author": "Calum Knott"
+		}

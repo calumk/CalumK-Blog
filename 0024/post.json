@@ -1,0 +1,11 @@
+{
+		  "title": "Python/Javascript MultiMap",
+		  "date": {
+		    "d": 27 ,
+		    "m": 1,
+		    "y": 2015
+		  },
+		  "tags": ["Python","Javascript"],
+		  "description": "A small code snippet for non-linear mapping in Python/Javascript",
+		  "author": "Calum Knott"
+		}

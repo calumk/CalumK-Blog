@@ -1,0 +1,11 @@
+{
+		  "title": "Making a plugin for Godot",
+		  "date": {
+		    "d": 6 ,
+		    "m": 4,
+		    "y": 2014
+		  },
+		  "tags": ["godot","games","engine","programming","gdscript"],
+		  "description": "A micro-tutorial on how to make a plugin for godot.",
+		  "author": "Calum Knott"
+		}
